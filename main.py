@@ -43,6 +43,12 @@ class Student:
                 grade.append(num)
         average = sum(grade) / len(grade)
         return average
+    
+    def __lt__(self, other):
+        if not isinstance(other, Student):
+            print("Разные категории людей не сравниваем.")
+            return
+        return self.average_rate() < other.average_rate()
 
 class Mentor:
     def __init__(self, name, surname):
@@ -84,6 +90,12 @@ class Lecturer(Mentor):
                 grade.append(num)
         average = sum(grade) / len(grade)
         return average
+    
+    def __lt__(self, other):
+        if not isinstance(other, Lecturer):
+            print("Разные категории людей не сравниваем.")
+            return
+        return self.average_rate() < other.average_rate()
 
 # Пример 1
 lecturer = Lecturer('Mentor', 'Lecturer')
@@ -115,6 +127,10 @@ reviewer2.rate_hw(student2, 'Python', 5)
 # Примеры по заданием №1-3
 print(student, reviewer, lecturer)
 print(student2, reviewer2, lecturer2)
+
+# Пример со сравнением
+print(student.__lt__(student2))
+print(lecturer.__lt__(lecturer2))
 
 #Задание № 4, для подсчёта средней оценки студентов и лекторов в рамках конкретного курса
 print(calc_average_score([student, student2], 'Python'))
