@@ -6,7 +6,7 @@ def calc_average_score(list: list, course: str) -> float:
                 if course in item.courses_in_progress:
                     average_score += item.average_rate()
             elif isinstance(item, Lecturer):
-                if course in item.students_grade:
+                if course in item.courses_attached:
                     average_score += item.average_rate()
         # и получаем общую среднюю оценку по курсу для всех студентов
         return round(average_score / len(list), 2)
